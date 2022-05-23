@@ -77,5 +77,6 @@ public class ServicoDeEstoqueTest {
 
         assertEquals(expectedEstoque.getQuantidadeDisponivel(), estoque.getQuantidadeDisponivel());
     }
+    
 
 }
