@@ -41,15 +41,14 @@ public class ServicoVendasTest {
     public void testVerificaDisponibilidadeFalse() {
         // arrange
         int quantidadeDisponivel = 10;
-        Produto produto = new Produto.Builder().codigo(1l).descricao("").build();
+        Produto produto = new Produto.Builder().codigo(2l).descricao("").build();
         Estoque estoque = new Estoque.Builder().produto(produto).quantidadeDisponivel(quantidadeDisponivel).build();
-        when(servicoDeEstoque.buscaItemEstoque(1l)).thenReturn(estoque);
+        when(servicoDeEstoque.buscaItemEstoque(2l)).thenReturn(estoque);
 
         // act
-        Boolean result = servicoVendas.verificaDisponibilidade(1l, 11);
+        Boolean result = servicoVendas.verificaDisponibilidade(2l, 11);
 
         // assert
         assertFalse(result);
     }
-
 }
