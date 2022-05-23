@@ -2,13 +2,11 @@ package com.projearq.sistemavendas.negocio.servicos;
 
 import com.projearq.sistemavendas.aplicacao.dtos.ProdutoDTO;
 import com.projearq.sistemavendas.aplicacao.excecoes.ExcecaoDeNegocio;
-import com.projearq.sistemavendas.aplicacao.servicos.restricoes.RestricoesFactory;
 import com.projearq.sistemavendas.negocio.entidades.Estoque;
 import com.projearq.sistemavendas.negocio.entidades.ItemVenda;
 import com.projearq.sistemavendas.negocio.entidades.Produto;
 import com.projearq.sistemavendas.negocio.entidades.Venda;
 import com.projearq.sistemavendas.negocio.repositorios.IVendasRepository;
-import com.projearq.sistemavendas.negocio.strategy.ICalculoImpostoStrategy;
 import com.projearq.sistemavendas.negocio.strategy.IRestricoesStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,19 +19,13 @@ public class ServicoVendas {
 
 	private IVendasRepository vendasRepository;
 
-	private ICalculoImpostoStrategy calculoImpostoStrategy;
-
-	private RestricoesFactory restricoesFactory;
-
 	private ServicoDeProduto servicoDeProduto;
 
 	private  ServicoDeEstoque servicoDeEstoque;
 
 	@Autowired
-	public ServicoVendas(IVendasRepository vendasRepository, ICalculoImpostoStrategy calculoImpostoStrategy, RestricoesFactory restricoesFactory, ServicoDeProduto servicoDeProduto, ServicoDeEstoque servicoDeEstoque) {
+	public ServicoVendas(IVendasRepository vendasRepository, ServicoDeProduto servicoDeProduto, ServicoDeEstoque servicoDeEstoque) {
 		this.vendasRepository = vendasRepository;
-		this.calculoImpostoStrategy = calculoImpostoStrategy;
-		this.restricoesFactory = restricoesFactory;
 		this.servicoDeProduto = servicoDeProduto;
 		this.servicoDeEstoque = servicoDeEstoque;
 	}
