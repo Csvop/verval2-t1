@@ -1,8 +1,8 @@
 # SistemaDeVendas
-Trabalho da Disciplina de Projeto e Arquitetura de Software
+Trabalho de Verificação e Validação de Software II
 
 ## Alunos
-André Marques, Fernado Elger, Gabriel Bilhar, Giovanni Frozza
+Adriana Serpa, Bruno Garcia, Leonardo Machado, Gabriel Velloso, Giovanni Frozza
 
 ## *Pré-requisitos*
 > Docker https://docs.docker.com/docker-for-windows/install/
@@ -14,7 +14,7 @@ André Marques, Fernado Elger, Gabriel Bilhar, Giovanni Frozza
 >
 > - docker build -t sistemavendas .
 >
-> - docker run -p 8080:8080 --rm -it sistemavendas:latest
+> - docker run -p 8080:8080 --rm sistemavendas:latest
 
 ### *Rodando o frontend:*
 >
