@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 @SpringBootTest
 public class ServicoVendasTest {
-    
+
     @InjectMocks
     private ServicoVendas servicoVendas;
 
@@ -44,7 +44,7 @@ public class ServicoVendasTest {
     @Mock
     private ServicoDeProduto servicoDeProduto;
 
-    private static final String driverDoChrome = "C:\\Users\\gg_ve\\OneDrive\\Documentos\\PUCRS\\dev\\chromedriver.exe";
+    private static final String driverDoChrome = "D:\\Documentos\\VERVAL\\chromedriver.exe";
 
     @Test
     public void testVerificaDisponibilidadeTrue() {
@@ -79,7 +79,7 @@ public class ServicoVendasTest {
     @Test
     @DisplayName("Verifica se os calculos de subtotal estão corretos para produtos sem restrição de quantidade")
     public void testecalCulaSubtotal() {
-        //arrange
+        // arrange
         ServicoVendas servicoVendas = new ServicoVendas(vendasRepository, servicoDeProduto, servicoDeEstoque);
         IRestricoesStrategy restricoes = new RestricoesNivelBaixo();
 
@@ -96,7 +96,7 @@ public class ServicoVendasTest {
     @Test
     @DisplayName("Verifica se os calculos de subtotal estão corretos para produtos com restrição de quantidade")
     public void testecalCulaSubtotalComRestricao() {
-        //arrange
+        // arrange
         ServicoVendas servicoVendas = new ServicoVendas(vendasRepository, servicoDeProduto, servicoDeEstoque);
         IRestricoesStrategy restricoes = new RestricoesNivelBaixo();
 
@@ -113,7 +113,7 @@ public class ServicoVendasTest {
     @Test
     @DisplayName("Verifica se os calculos de subtotal estão corretos para multiplos produtos")
     public void testecalCulaSubtotals() {
-        //arrange
+        // arrange
         ServicoVendas servicoVendas = new ServicoVendas(vendasRepository, servicoDeProduto, servicoDeEstoque);
         IRestricoesStrategy restricoes = new RestricoesNivelBaixo();
 
@@ -131,7 +131,7 @@ public class ServicoVendasTest {
 
     @Test
     @DisplayName("Verifica se eu consigo usar o selenium aqui")
-        public void testaSelenium(){
+    public void testaSelenium() {
         final boolean fecharBrowserNoFinal = false;
         boolean esteTestePassou = false;
         System.out.println("+++++ Iniciando Exemplo 1...");
@@ -161,8 +161,7 @@ public class ServicoVendasTest {
 
             esteTestePassou = (iResult == 45);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             esteTestePassou = false;
             System.err.println(e.toString());
         } finally {
@@ -171,15 +170,13 @@ public class ServicoVendasTest {
             }
         }
 
-        System.out.println(">>>>>>>>>>>>>>> Resultado do teste: " + ((esteTestePassou)? "PASSOU" : "FALHOU"));
+        System.out.println(">>>>>>>>>>>>>>> Resultado do teste: " + ((esteTestePassou) ? "PASSOU" : "FALHOU"));
         System.out.println("+++++++++++++++ Fim do exemplo 1.");
     }
 
     @Test
     @DisplayName("Tentando abrir o projeto")
-    public void testaCompra(){
-        final boolean fecharBrowserNoFinal = false;
-        boolean esteTestePassou = false;
+    public void testaCompra() {
         System.out.println("+++++ Iniciando Exemplo 1...");
         // Propriedades Gerais
         System.setProperty("webdriver.chrome.driver", driverDoChrome);
@@ -191,30 +188,20 @@ public class ServicoVendasTest {
         // Instancia o WebDriver do Chrome
         final WebDriver driver = new ChromeDriver();
 
-        try {
-            // Abre o index do projeto
-            driver.get("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
-//            WebElement caixaGeladeira = driver.findElement(By.id(""));
-//            caixaGeladeira.click();
+        // Abre o index do projeto
+        driver.get("file:///D:/Documentos/VERVAL/VerVal2/SistemaDeVendas/frontend/index.html");
 
-            WebDriverWait wait1 = new WebDriverWait(driver, 10);
-//            wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("cwos")));
+        WebDriverWait wait1 = new WebDriverWait(driver, 10);
+        wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("select0")));
 
-//            WebElement elementoResultado = driver.findElement(By.id("cwos"));
-//            String strResult = elementoResultado.getText();
-//            int iResult = Integer.parseInt(strResult);
-//
-//            esteTestePassou = (iResult == 45);
+        WebElement produtoClickado = driver.findElement(By.id("select0"));
+        produtoClickado.click();
 
-        }
-        catch (Exception e) {
-            esteTestePassou = false;
-            System.err.println(e.toString());
-        } finally {
-            if (fecharBrowserNoFinal) {
-                driver.quit();
-            }
-        }
+        WebElement elementoResultado = driver.findElement(By.id("txtTotal"));
+        String strResult = elementoResultado.getText();
 
+        assertEquals(strResult, "Total: R$ 2800.62");
+
+        driver.quit();
     }
 }
