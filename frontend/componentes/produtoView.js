@@ -1,11 +1,11 @@
 class ProdutoView {
-  criarElemento() {
+  criarElemento(i) {
     let template = `
       <div class="produto">  
         <div class="inner">
           <div class="descricao"></div>
           <div class="preco"></div>
-          <button class="select">Selecionar</button>
+          <button id=${"select"+i} class="select">Selecionar</button>
         </div>
       </div>
     `.trim();
