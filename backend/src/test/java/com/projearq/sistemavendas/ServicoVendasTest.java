@@ -29,6 +29,12 @@ import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.CollectionCondition.size;
+
 @SpringBootTest
 public class ServicoVendasTest {
 
@@ -173,6 +179,13 @@ public class ServicoVendasTest {
         System.out.println(">>>>>>>>>>>>>>> Resultado do teste: " + ((esteTestePassou) ? "PASSOU" : "FALHOU"));
         System.out.println("+++++++++++++++ Fim do exemplo 1.");
     }
+
+
+/*
+ * 
+ * INICIANDO TESTES COM SELENIUM
+ * 
+ */
 
     @Test
     @DisplayName("Testa valor total de Produto + Imposto")
@@ -437,4 +450,116 @@ public class ServicoVendasTest {
         driver.quit();
     }
 
+/*
+ * 
+ * FINALIZANDO TESTES COM SELENIUM
+ * 
+ *  INICIANDO TESTES COM SELENIDE
+ * 
+ */
+
+    @Test
+    @DisplayName("Testa Valor Tabelado Selenide")
+    public void testaValorSelenide() {
+        System.out.println("Iniciando Exemplo 1 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select0")).click();
+
+        $(By.id("txtTotal")).shouldHave(text("Total: R$ 2800.62"));
+    }
+
+    @Test
+    @DisplayName("Testa Lixeira Selenide")
+    public void testaLixeiraSelenide() {
+        System.out.println("Iniciando Exemplo 2 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select0")).click();
+        $(By.id("select2")).click();
+
+        $(By.id("btnClear")).click();
+
+        $(By.id("txtTotal")).shouldHave(text("Total: R$ 0.00"));
+    }
+
+    @Test
+    @DisplayName("Testa Item Indisponível Selenide")
+    public void testaIndisponivelSelenide() {
+        System.out.println("Iniciando Exemplo 3 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select1")).click();
+        
+        $(By.id("swal2-title")).shouldHave(text("Ops!"));
+    }
+
+    @Test
+    @DisplayName("Testa Valor Limite Selenide")
+    public void testaValorLimiteSelenide() {
+        System.out.println("Iniciando Exemplo 4 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select0")).click();
+        $(By.id("select0")).click();
+        $(By.id("select0")).click();
+        $(By.id("select0")).click();
+        
+        $(By.id("swal2-title")).shouldHave(text("Ops!"));
+    }
+
+    @Test
+    @DisplayName("Testa Compra Simples Selenide")
+    public void testaCompraSelenide() {
+        System.out.println("Iniciando Exemplo 5 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select0")).click();
+        $(By.id("btnCheckout")).click();
+        
+        $(By.id("swal2-title")).shouldHave(text("Sucesso!"));
+    }
+
+    @Test
+    @DisplayName("Testa Quantidade Limite Selenide")
+    public void testaQtdLimiteSelenide() {
+        System.out.println("Iniciando Exemplo 6 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        $(By.id("select4")).click();
+        
+        
+        $(By.id("swal2-title")).shouldHave(text("Ops!"));
+    }
+
+    @Test
+    @DisplayName("Testa Compra Simples Selenide")
+    public void testaCompraConjuntaSelenide() {
+        System.out.println("Iniciando Exemplo 5 Selenide");
+        // Propriedades Gerais
+        open("file:///C:/Users/gg_ve/OneDrive/Documentos/PUCRS/VV2/verval2-t1/frontend/index.html");
+
+        $(By.id("select0")).click();
+        $(By.id("select2")).click();
+        $(By.id("select4")).click();
+        $(By.id("btnCheckout")).click();
+        
+        $(By.id("swal2-title")).shouldHave(text("Sucesso!"));
+    }
 }
